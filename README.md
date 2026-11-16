@@ -10,7 +10,7 @@ This repo is what the template builds: a `Dockerfile` that pins the official ima
 - **Persistent data** on a Railway volume mounted at `/var/lib/postgresql` (`PGDATA=/var/lib/postgresql/18/docker`).
 - **Generated password**: `POSTGRES_PASSWORD` is a random 32-character secret. There is no default password.
 - **TLS**: a self-signed certificate is generated on first start, kept on the volume and renewed 30 days before it expires. Clients using `sslmode=prefer` or `require` get an encrypted connection.
-- **HNSW-friendly settings**: `maintenance_work_mem=512MB` and `shared_buffers=512MB` are set on first start (with `ALTER SYSTEM`, so you can change them later), and dynamic shared memory lives in the data directory, so parallel HNSW index builds don't fail with "could not resize shared memory segment" on the container's small `/dev/shm`.
+- **HNSW-friendly settings**: `maintenance_work_mem=512MB` and `shared_buffers=512MB` are set on first start (with `ALTER SYSTEM`, so you can change them later), and dynamic shared memory lives in the data directory, so parallel HNSW index builds don't fail with "could not resize shared memory segment" on the container's 62 MB `/dev/shm` (Railway's size, checked 2026-11-16).
 - **Private and public access**: other services connect over Railway's private network with `${{pgvector.DATABASE_URL}}`. A TCP proxy on port 5432 gives `DATABASE_PUBLIC_URL` for tools outside Railway (psql, DBeaver, notebooks).
 - **Clean redeploys**: the start script turns Railway's SIGTERM into a fast shutdown, so Postgres checkpoints and stops within the 60 s draining window.
 
