@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased (2026-11-16)
+
+- README: Deploy on Railway button for the published template `pgvector-1`. No change to the database image or start scripts.
+
 ## 0.8.7-pg18 (2026-11-16)
 
 First release.

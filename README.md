@@ -1,5 +1,7 @@
 # pgvector on Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/pgvector-1?utm_medium=integration&utm_source=button&utm_campaign=pgvector)
+
 Railway template for [pgvector](https://github.com/pgvector/pgvector), open-source vector similarity search for PostgreSQL, running on PostgreSQL 18.
 
 This repo is what the template builds: a `Dockerfile` that pins the official image `pgvector/pgvector:0.8.7-pg18-trixie` by digest, a first-start script (`initdb/10-pgvector.sh`) and a small start script (`railway-entrypoint.sh`).
